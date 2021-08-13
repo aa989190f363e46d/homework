@@ -1,3 +1,4 @@
+import pytest
 from pizza import find_entrance, find_floor
 
 F = 5  # этажей
@@ -54,3 +55,23 @@ def test_last_flat_of_entrance():
 
     assert find_entrance(F, n) == 2
     assert find_floor(F, n) == F
+
+
+def test_zero_height_find_entrance():
+    with pytest.raises(ValueError):
+        find_entrance(0, 1)
+
+
+def test_negative_height_find_entrance():
+    with pytest.raises(ValueError):
+        find_entrance(-1, 1)
+
+
+def test_zero_height_find_floor():
+    with pytest.raises(ValueError):
+        find_entrance(F, 0)
+
+
+def test_negative_height_find_floor():
+    with pytest.raises(ValueError):
+        find_entrance(F, -1)

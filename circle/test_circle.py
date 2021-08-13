@@ -1,7 +1,7 @@
 from math import pi
 
 import pytest
-from circle import perimeter, square
+from circle import perimeter, aria
 
 
 def float_eq(real, expected):
@@ -16,9 +16,19 @@ def test_perimeter():
     assert float_eq(perimeter(d), pi * d)
 
 
-def test_square():
+def test_aria():
     d = 4.2
-    assert float_eq(square(d), pi * (d / 2) ** 2)
+    assert float_eq(aria(d), pi * (d / 2) ** 2)
+
+
+def test_invalid_diameter_perimeter():
+    with pytest.raises(ValueError):
+        perimeter(-2)
+
+
+def test_invalid_diameter_aria():
+    with pytest.raises(ValueError):
+        aria(-2)
 
 
 def test_invalid_types():
