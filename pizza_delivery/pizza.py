@@ -13,7 +13,6 @@
 Для решения понадобится использовать деление по модулю % или целочисленное
 деление //.
 """
-from math import ceil
 
 FLATS_PER_FLOOR = 4
 
@@ -43,7 +42,9 @@ def find_entrance(building_height, flat_num):
     """
     check_buildig_height(building_height)
     check_flat_num(flat_num)
-    return ceil(flat_num / flats_per_entrance(building_height))
+    fpe_ = flats_per_entrance(building_height)
+    entrances_before, flat_num_in_ent = divmod(flat_num, fpe_)
+    return entrances_before + (1 if flat_num_in_ent else 0)
 
 
 def find_floor(building_height, flat_num):
@@ -53,10 +54,12 @@ def find_floor(building_height, flat_num):
     """
     check_buildig_height(building_height)
     check_flat_num(flat_num)
-    flat_num_in_ent = flat_num % flats_per_entrance(building_height)
+    fpe_ = flats_per_entrance(building_height)
+    flat_num_in_ent = flat_num % fpe_
     if flat_num_in_ent == 0:
         return building_height
-    return ceil(flat_num_in_ent / FLATS_PER_FLOOR)
+    floors_before, flat_num_at_floor = divmod(flat_num_in_ent, FLATS_PER_FLOOR)
+    return floors_before + (1 if flat_num_at_floor else 0)
 
 
 if __name__ == "__main__":
@@ -84,6 +87,6 @@ if __name__ == "__main__":
 
     ent_floor = find_floor(floors, flat_num)
 
-    print("\nВасилий, для выполнения заказа проследуйте")
+    print("\n🤖: Василий, для выполнения заказа проследуйте")
     print(f"к подъезду\t№{entrance:>4}")
     print(f"на этаж\t\t№{ent_floor:>4}")
