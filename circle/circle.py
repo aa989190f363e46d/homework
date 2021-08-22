@@ -19,10 +19,10 @@ def perimeter(diameter):
     return pi * diameter
 
 
-def aria(diameter):
+def area(diameter):
     check_diameter_value(diameter)
     raduis = diameter / 2
-    return pi * pow(raduis, 2)
+    return pi * raduis ** 2
 
 
 if __name__ == "__main__":
@@ -36,5 +36,5 @@ if __name__ == "__main__":
 
     print(f"Периметр сковороды:\t{pan_perimeter:>10.2f} ед")
 
-    pan_aria = aria(d)
-    print(f"Площадь сковороды: \t{pan_aria:>10.2f} кв. ед")
+    pan_area = area(d)
+    print(f"Площадь сковороды: \t{pan_area:>10.2f} кв. ед")
