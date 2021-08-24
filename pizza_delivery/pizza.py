@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 """
+Задаче про доставку пицы.
+
 В. Пупкин развозит пиццу. Ему сообщают адрес доствки в виде <улица> <номер
 дома>-<номер квартиры>
 
@@ -65,15 +67,15 @@ def find_floor(building_height, flat_num):
 if __name__ == "__main__":
     import sys
 
+    inp_floors = input("Число этажей: ")
     try:
-        inp_floors = input("Число этажей: ")
         floors = int(inp_floors)
     except ValueError as e:
         print(f"Invalid input floors={inp_floors}", e, sep="\n")
         sys.exit(1)
 
+    inp_flat_num = input("Номер квартиры: ")
     try:
-        inp_flat_num = input("Номер квартиры: ")
         flat_num = int(inp_flat_num)
     except ValueError as e:
         print(f"Invalid input flat_num={inp_flat_num}", e, sep="\n")
@@ -87,6 +89,7 @@ if __name__ == "__main__":
 
     ent_floor = find_floor(floors, flat_num)
 
-    print("\n🤖: Василий, для выполнения заказа проследуйте")
-    print(f"к подъезду\t№{entrance:>4}")
-    print(f"на этаж\t\t№{ent_floor:>4}")
+    print("\n🤖: Василий, для выполнения заказа проследуйте",
+          f"к подъезду\t№{entrance:>4}",
+          f"на этаж\t\t№{ent_floor:>4}",
+          sep='\n')
