@@ -65,27 +65,26 @@ def find_floor(building_height, flat_num):
 
 
 if __name__ == "__main__":
-    import sys
 
     inp_floors = input("Число этажей: ")
     try:
         floors = int(inp_floors)
     except ValueError as e:
         print(f"Invalid input floors={inp_floors}", e, sep="\n")
-        sys.exit(1)
+        sys.exit(1)  # type: ignore[name-defined] # noqa: F821
 
     inp_flat_num = input("Номер квартиры: ")
     try:
         flat_num = int(inp_flat_num)
     except ValueError as e:
         print(f"Invalid input flat_num={inp_flat_num}", e, sep="\n")
-        sys.exit(1)
+        sys.exit(1)  # type: ignore[name-defined] # noqa: F821
 
     try:
         entrance = find_entrance(floors, flat_num)
     except ValueError as e:
         print(e)
-        sys.exit(1)
+        sys.exit(1)  # type: ignore[name-defined] # noqa: F821
 
     ent_floor = find_floor(floors, flat_num)
 
