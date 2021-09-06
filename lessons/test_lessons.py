@@ -41,7 +41,6 @@ def test_9():
 def test_10():
     assert end_of_lesson(10) == (16, 55)
 
-
 def test_to_many_lessons():
     with pytest.raises(ValueError):
         assert end_of_lesson(18)
