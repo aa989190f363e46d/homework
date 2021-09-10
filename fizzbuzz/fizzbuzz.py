@@ -12,5 +12,12 @@ https://en.wikipedia.org/wiki/Fizz_buzz
 """
 
 
-def fizzbuzz(n: int) -> str:
-    pass
+def fizzbuzz(num: int) -> str:
+    if num <= 0:
+        raise ValueError(f'Wron value ({num})')
+    fizz = 'Fizz' if num % 3 == 0 else ''
+    buzz = 'Buzz' if num % 5 == 0 else ''
+    reply = f'{fizz}{buzz}'
+    if not reply:
+        return f'{num}'
+    return reply
