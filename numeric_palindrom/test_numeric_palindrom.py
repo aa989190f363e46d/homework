@@ -12,3 +12,8 @@ def test_wrong_numbers():
     with pytest.raises(ValueError):    
         assert is_palindrom(-12321)
         assert is_palindrom(1232.1)
+
+
+def test_non_palindrom():
+    assert not is_palindrom(12)
+    assert not is_palindrom(123)
