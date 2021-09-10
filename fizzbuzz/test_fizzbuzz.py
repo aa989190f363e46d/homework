@@ -1,3 +1,4 @@
+import pytest
 from fizzbuzz import fizzbuzz
 
 
@@ -16,3 +17,9 @@ def test_3_5_15_multiplied():
     assert fizzbuzz(3 * MULTIPLIER) == "Fizz"
     assert fizzbuzz(5 * MULTIPLIER) == "Buzz"
     assert fizzbuzz(15 * MULTIPLIER) == "FizzBuzz"
+
+
+def test_bad_input():
+    with pytest.raises(ValueError):
+        assert fizzbuzz(0)
+        assert fizzbuzz(-1)
