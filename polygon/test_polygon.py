@@ -1,8 +1,41 @@
-from polygon import polygon_vertices
+from itertools import islice
+from polygon import polygon_vertices, get_polygon_vertices
 
 
 def float_cmp(a: float, b: float):
     return abs(a - b) <= 0.001
+
+
+def test_simmetry_even():
+    n_vert = 1_000_000
+    quarter = n_vert // 4
+    megagon = polygon_vertices(n_vert, n_vert)
+    m_0 = megagon[0]
+    m_middle = megagon[n_vert // 2]
+    assert m_0 == (m_middle[0], -m_middle[1])
+    m_cw_quart = megagon[n_vert // 4]
+    m_ccw_quart = megagon[n_vert // 4 * 3]
+    assert m_cw_quart == (-m_ccw_quart[0], m_ccw_quart[1])
+    octern = n_vert // 8
+    m_oct = (
+        megagon[octern],
+        megagon[octern + quarter],
+        megagon[octern + quarter * 2],
+        megagon[octern + quarter * 3],
+            )
+    assert m_oct[0] == (m_oct[1][0], -m_oct[1][1])
+    assert m_oct[0] == (-m_oct[2][0], -m_oct[2][1])
+    assert m_oct[0] == (-m_oct[3][0], m_oct[3][1])
+
+
+def test_simmetry_odd():
+    unomilleniagon = polygon_vertices(1001, 1000)
+    m_1 = unomilleniagon[1]
+    m_1000 = unomilleniagon[1000]
+    assert m_1 == (-m_1000[0], m_1000[1])
+    m_500 = unomilleniagon[500]
+    m_501 = unomilleniagon[501]
+    assert m_500 == (-m_501[0], m_501[1])
 
 
 def test_hexagon():
