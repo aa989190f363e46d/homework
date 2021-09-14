@@ -34,3 +34,10 @@ def test_b_outside_a():
     b = Rect(x=-1, y=-1, w=2, h=3)
 
     assert not rect_inside(a, b)
+
+
+def test_a_is_a():
+    a = Rect(0, 0, 2, 3)
+    
+    assert rect_inside(a, a)
+    assert rects_intersect(a, a)
