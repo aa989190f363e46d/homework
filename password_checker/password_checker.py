@@ -15,7 +15,13 @@ from typing import Callable, Iterable
 PASSWD_LENGTH_POLICY = 10
 
 
-def is_strong_password_iter(passwd: str) -> bool:
+def is_strong_password(passwd: str) -> bool:
+    """
+    Check password strength using generators.
+
+    My goal was checking by **one** loop ower password.
+    I wrote special generators with locks for it.
+    """
     if len(passwd) < PASSWD_LENGTH_POLICY:
         return False
     checkers = (
@@ -64,32 +70,3 @@ def get_has_digit_it(passwd):
             break
     while True:  # noqa: WPS457
         yield fl_digit
-
-
-def is_strong_password_filter(passwd: str) -> bool:
-    if len(passwd) < PASSWD_LENGTH_POLICY:
-        return False
-
-    def build_filter(  # noqa: WPS430
-            checker: Callable[[str], bool],
-            ) -> Iterable[str]:
-        return filter(checker, passwd)
-
-    bariers = (
-        str.isdigit,
-        str.isupper,
-        str.islower,
-        is_punctuation,
-        )
-
-    for flt in map(build_filter, bariers):
-        try:
-            next(flt)  # type: ignore[call-overload]
-        except StopIteration:
-            return False
-
-    return True
-
-
-def is_punctuation(char: str) -> bool:
-    return char in punctuation

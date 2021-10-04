@@ -1,9 +1,4 @@
-from password_checker import (
-    is_strong_password_iter,
-    is_strong_password_filter,
-    )
-
-is_strong_password = is_strong_password_iter
+from password_checker import is_strong_password
 
 STRONG_PWD = 'даLadno?$123.4' * 10_000  # noqa: S105
 
