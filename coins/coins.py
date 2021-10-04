@@ -12,10 +12,7 @@ def max_sum_of_2(*args) -> int:
     if len(args) != 3:
         raise ValueError(f"Count of arguments must be 3 but get {len(args)}")
     for coin_val in args:
-        try:
-            check_coin_val(coin_val)
-        except ValueError as e:
-            raise e
+        check_coin_val(coin_val)
     return _calculate_sum(*args)
 
 
@@ -27,7 +24,7 @@ def check_coin_val(coin_val: int) -> None:
 
 
 def _calculate_sum(*args):
-    return sum(sorted(args)[-2:])
+    return sum(sorted(args, reverse=True)[:2])
 
 
 def get_coin_input(coin_name: str) -> int:
@@ -42,7 +39,7 @@ def get_coin_input(coin_name: str) -> int:
 
 if __name__ == "__main__":
     coins: List[int] = []
-    for num, _ in enumerate(range(3), 1):
+    for num in range(1, 4):
         try:
             coin_val = get_coin_input(f"{num}")
         except ValueError as e:
