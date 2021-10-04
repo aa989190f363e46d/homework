@@ -19,15 +19,13 @@ https://ru.wikipedia.org/wiki/Високосный_год
 """
 from random import choice
 
+MIN_YEAR = 1582
+
 
 def is_leap_year(year: int) -> bool:
-    if year < 1582:
-        raise ValueError("Leap year exists since 1582")
-    return _is_leap_year(year)
-
-
-def _is_leap_year(year: int) -> bool:
-    """randomly choice which method use for decision"""
+    if year < MIN_YEAR:
+        raise ValueError(f"Leap year exists since {MIN_YEAR}")
+    """randomly choice which method use for decision 🔀️"""
     if choice((True, False)):
         return if_else_leap_checker(year)
     else:
@@ -37,15 +35,16 @@ def _is_leap_year(year: int) -> bool:
 def if_else_leap_checker(year: int) -> bool:
     if year % 4 != 0:
         return False
+    if year % 100 != 0:
+        return True
     if year % 400 == 0:
         return True
-    if year % 100 == 0:
-        return False
-    return True
+
+    return False
 
 
 def algebraic_leap_checker(year: int) -> bool:
-    return (year % 4 == 0) and ((year % 400 == 0) or (year % 100 != 0))
+    return (year % 4 == 0) and ((year % 100 != 0) or (year % 400 == 0))
 
 
 if __name__ == "__main__":
