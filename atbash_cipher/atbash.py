@@ -13,14 +13,14 @@
 
 `Bambarbia, Kirgudu` -> `yznyz iyrzp ritfw f`
 """
-from string import ascii_letters
+from string import ascii_lowercase
 from typing import Generator
 
 BLOCK_SIZE = 5
 
 TRANS = str.maketrans(
-    ascii_letters[:26],  # noqa: WPS432
-    str.join('', reversed(ascii_letters[:26])),  # noqa: WPS432
+    ascii_lowercase,  # noqa: WPS432
+    str.join('', reversed(ascii_lowercase)),  # noqa: WPS432
     )
 
 
