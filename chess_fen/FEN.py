@@ -31,7 +31,7 @@ P P P P P P P P
 R N B Q K B N R
 ```
 """
-from itertools import chain, cycle, islice
+from itertools import chain, cycle, islice, tee
 from typing import Generator
 
 PAWN_VAL = 1  # пешка
@@ -112,9 +112,9 @@ def chess_board_gen(  # noqa: WPS210, WPS231
 
 
 def traverse_iter(iterator, skip_last=False):
-    prev = next(iterator)
-    for elem in iterator:
-        yield prev
-        prev = elem
+    leader, chaser = tee(iterator)
+    next(chaser, None)
+    for first, last in zip(leader, chaser):  # noqa: B007, WPS526
+        yield first
     if not skip_last:
-        yield prev
+        yield last  # noqa: WPS441
